@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="ProyectoFinal.Gameover"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProyectoFinal"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="450">
+    <Grid>
+        <Image x:Name="Image1_png" Margin="-205,-30,-197.4,-0.4" Source="Image1.png" Stretch="Fill"/>
+
+    </Grid>
+</UserControl>
