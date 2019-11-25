@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ProyectoFinal"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="450">
-    <Canvas Focusable="True" Name="canvasPrincipal" KeyDown="canvasPrincipal_KeyDown" Margin="0,0,-0.4,-0.4" Background="Black">
+    <Canvas Focusable="True" Name="canvasPrincipal" KeyDown="canvasPrincipal_KeyDown" Background="Black">
         <Image Name="spritePepper" Width="50" Height="50" Canvas.Left="132" Canvas.Top="177" Stretch="Fill" />
     </Canvas>
 </UserControl>
