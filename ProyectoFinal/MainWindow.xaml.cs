@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
+using System.Diagnostics;
 
 namespace ProyectoFinal
 {
@@ -21,5 +23,10 @@ namespace ProyectoFinal
     public partial class MainWindow : Window
     {
 
+      
+        private void btnStart_Click(object sender, RoutedEventArgs e)
+        {
+            Juego.Visibility = Visibility.Visible;
+        }
     }
 }

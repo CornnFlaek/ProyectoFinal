@@ -6,15 +6,16 @@
         xmlns:local="clr-namespace:ProyectoFinal"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="450">
-    <Grid Background="Black" >
-        <Grid.RowDefinitions>
-            <RowDefinition Height="41*"/>
-            <RowDefinition Height="43*"/>
-        </Grid.RowDefinitions>
+    <Grid>
 
         <Image x:Name="start_gif" Margin="0,-37,0.2,0" Source="start.gif" Stretch="Fill" Grid.RowSpan="2"/>
-        <Button x:Name="btnTutorial" Content="Tutorial" HorizontalAlignment="Left" VerticalAlignment="Top" Width="165" Margin="40,135.2,0,0" Grid.Row="1" Height="49" Background="Red" Click="button_Click" FontFamily="Chiller" FontSize="36" BorderBrush="{x:Null}"/>
-        <Button x:Name="btnStart" Content="Start" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Margin="290,135.2,0,0" Grid.Row="1" Height="49" Background="Red" BorderBrush="{x:Null}" FontFamily="Chiller" FontSize="36"/>
-
+        <Button x:Name="btnTutorial" Content="Tutorial" HorizontalAlignment="Left" VerticalAlignment="Top" Width="165" Margin="40,135.2,0,0" Grid.Row="1" Height="49" Background="Red" FontFamily="Chiller" FontSize="36" BorderBrush="{x:Null}"/>
+        <Button x:Name="btnStart" Content="Start" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Margin="290,135.2,0,0" Grid.Row="1" Height="49" Background="Red" BorderBrush="{x:Null}" FontFamily="Chiller" FontSize="36" Click="btnStart_Click"/>
+        
+        <local:Juego x:Name="Juego" Visibility="Collapsed">
+        </local:Juego>
+        <local:Tutorial x:Name="Tutorial" Visibility="Collapsed">
+        </local:Tutorial>
+      
     </Grid>
 </Window>

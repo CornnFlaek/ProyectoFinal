@@ -37,17 +37,21 @@ namespace ProyectoFinal
         public Pepper(Image imagen)
         {
             Imagen = imagen;
-            arriba.Add(new BitmapImage(new Uri("arriba1.png", UriKind.Relative)));
-            arriba.Add(new BitmapImage(new Uri("arriba2.png", UriKind.Relative)));
+            arriba.Add(new BitmapImage(new Uri("Up1.png", UriKind.Relative)));
+            arriba.Add(new BitmapImage(new Uri("Up2.png", UriKind.Relative)));
+            arriba.Add(new BitmapImage(new Uri("Up2.png", UriKind.Relative)));
 
-            abajo.Add(new BitmapImage(new Uri("abajo1.png", UriKind.Relative)));
-            abajo.Add(new BitmapImage(new Uri("abajo2.png", UriKind.Relative)));
+            abajo.Add(new BitmapImage(new Uri("Down1.png", UriKind.Relative)));
+            abajo.Add(new BitmapImage(new Uri("Down2.png", UriKind.Relative)));
+            abajo.Add(new BitmapImage(new Uri("Down3.png", UriKind.Relative)));
 
-            izquierda.Add(new BitmapImage(new Uri("izquierda1.png", UriKind.Relative)));
-            izquierda.Add(new BitmapImage(new Uri("izquierda2.png", UriKind.Relative)));
+            izquierda.Add(new BitmapImage(new Uri("Left1.png", UriKind.Relative)));
+            izquierda.Add(new BitmapImage(new Uri("Left2.png", UriKind.Relative)));
+            izquierda.Add(new BitmapImage(new Uri("Left3.png", UriKind.Relative)));
 
-            derecha.Add(new BitmapImage(new Uri("derecha1.png", UriKind.Relative)));
-            derecha.Add(new BitmapImage(new Uri("derecha2.png", UriKind.Relative)));
+            derecha.Add(new BitmapImage(new Uri("Right1.png", UriKind.Relative)));
+            derecha.Add(new BitmapImage(new Uri("Right2.png", UriKind.Relative)));
+            derecha.Add(new BitmapImage(new Uri("Right3.png", UriKind.Relative)));
             Imagen.Source = derecha[0];
 
             PosicionX = Canvas.GetLeft(imagen);
@@ -58,7 +62,74 @@ namespace ProyectoFinal
             Velocidad = 20;
 
         }
+        public void CambiarDireccion(Direccion nuevaDireccion)
+        {
+            DireccionActual = nuevaDireccion;
+            switch (DireccionActual)
+            {
+                case Direccion.Abajo:
+                    Imagen.Source = abajo[0];
+                    break;
+                case Direccion.Arriba:
+                    Imagen.Source = arriba[0];
+                    break;
+                case Direccion.Izquierda:
+                    Imagen.Source = izquierda[0];
+                    break;
+                case Direccion.Derecha:
+                    Imagen.Source = derecha[0];
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void Mover(double deltaTime)
+        {
+            tiempoTranscurridoEnSprite += deltaTime;
+            int spriteAnterior = spriteActual;
+            if (tiempoTranscurridoEnSprite >= tiempoPorSprite)
+            {
+                spriteActual++;
+                tiempoTranscurridoEnSprite -= tiempoPorSprite;
+                if (spriteActual > 1)
+                {
+                    spriteActual = 0;
+                }
+            }
+            BitmapImage sprite = null;
+            switch (DireccionActual)
+            {
+                case Direccion.Abajo:
+                    PosicionY += Velocidad * deltaTime;
+                    sprite = abajo[spriteActual];
+
+                    break;
+                case Direccion.Arriba:
+                    PosicionY -= Velocidad * deltaTime;
+                    sprite = arriba[spriteActual];
+
+                    break;
+                case Direccion.Izquierda:
+                    PosicionX -= Velocidad * deltaTime;
+                    sprite = izquierda[spriteActual];
+                    break;
+                case Direccion.Derecha:
+                    PosicionX += Velocidad * deltaTime;
+                    sprite = derecha[spriteActual];
+                    break;
+                default:
+                    break;
+            }
+            if (spriteAnterior != spriteActual && sprite != null)
+            {
+                Imagen.Source = sprite;
+            }
+            Canvas.SetLeft(Imagen, PosicionX);
+            Canvas.SetTop(Imagen, PosicionY);
 
 
+        }
     }
+
 }
