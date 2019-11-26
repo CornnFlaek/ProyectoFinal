@@ -31,8 +31,11 @@ namespace ProyectoFinal
 
         private void btnTutorial_Click(object sender, RoutedEventArgs e)
         {
-            panelTutorial.Children.Clear();
+            panelTutorial.Visibility = Visibility.Visible;
+            
             panelTutorial.Children.Add(new Tutorial());
+            
+            
         }
     }
 }
