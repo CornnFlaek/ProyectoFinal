@@ -58,7 +58,7 @@ namespace ProyectoFinal
             double deltaTime = tiempoActual.TotalSeconds - tiempoAnterior.TotalSeconds;
 
             pepper.Mover(deltaTime);
-            pepper.Velocidad += 10 * deltaTime;
+          
 
             tiempoAnterior = tiempoActual;
         }

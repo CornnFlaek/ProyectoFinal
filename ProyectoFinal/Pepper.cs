@@ -38,8 +38,8 @@ namespace ProyectoFinal
         {
             Imagen = imagen;
             arriba.Add(new BitmapImage(new Uri("Up1.png", UriKind.Relative)));
-            arriba.Add(new BitmapImage(new Uri("Up2.png", UriKind.Relative)));
-            arriba.Add(new BitmapImage(new Uri("Up2.png", UriKind.Relative)));
+            arriba.Add(new BitmapImage(new Uri("Up 2.png", UriKind.Relative)));
+            arriba.Add(new BitmapImage(new Uri("Up3.png", UriKind.Relative)));
 
             abajo.Add(new BitmapImage(new Uri("Down1.png", UriKind.Relative)));
             abajo.Add(new BitmapImage(new Uri("Down2.png", UriKind.Relative)));
@@ -92,7 +92,7 @@ namespace ProyectoFinal
             {
                 spriteActual++;
                 tiempoTranscurridoEnSprite -= tiempoPorSprite;
-                if (spriteActual > 1)
+                if (spriteActual > 2)
                 {
                     spriteActual = 0;
                 }
