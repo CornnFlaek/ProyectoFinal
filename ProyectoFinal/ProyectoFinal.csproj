@@ -145,5 +145,8 @@
     <Resource Include="Up1.png" />
     <Resource Include="Up3.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FondoJuego_Fondo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
