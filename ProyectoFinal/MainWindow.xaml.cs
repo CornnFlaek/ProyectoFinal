@@ -28,5 +28,14 @@ namespace ProyectoFinal
         {
             Juego.Visibility = Visibility.Visible;
         }
+
+        private void btnTutorial_Click(object sender, RoutedEventArgs e)
+        {
+            panelTutorial.Visibility = Visibility.Visible;
+            
+            panelTutorial.Children.Add(new Tutorial());
+            
+            
+        }
     }
 }

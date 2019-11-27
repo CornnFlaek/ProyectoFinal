@@ -7,15 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="450">
     <Grid>
-
-        <Image x:Name="start_gif" Margin="0,-37,0.2,0" Source="start.gif" Stretch="Fill" Grid.RowSpan="2"/>
-        <Button x:Name="btnTutorial" Content="Tutorial" HorizontalAlignment="Left" VerticalAlignment="Top" Width="165" Margin="40,135.2,0,0" Grid.Row="1" Height="49" Background="Red" FontFamily="Chiller" FontSize="36" BorderBrush="{x:Null}"/>
+        <Image x:Name="start_gif" Margin="0,-37,0,0" Source="start.gif" Stretch="Fill"/>
+        <Button x:Name="btnTutorial" Content="Tutorial" HorizontalAlignment="Left" VerticalAlignment="Top" Width="165" Margin="40,135.2,0,0" Grid.Row="1" Height="49" Background="Red" FontFamily="Chiller" FontSize="36" BorderBrush="{x:Null}" Click="btnTutorial_Click"/>
         <Button x:Name="btnStart" Content="Start" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Margin="290,135.2,0,0" Grid.Row="1" Height="49" Background="Red" BorderBrush="{x:Null}" FontFamily="Chiller" FontSize="36" Click="btnStart_Click"/>
-        
+
         <local:Juego x:Name="Juego" Visibility="Collapsed">
         </local:Juego>
         <local:Tutorial x:Name="Tutorial" Visibility="Collapsed">
         </local:Tutorial>
-      
+        <Grid x:Name="panelTutorial" HorizontalAlignment="Left" Height="446" Margin="10,-27,0,0" VerticalAlignment="Top" Width="422" Visibility="Hidden">
+            <Image x:Name="imgFondo" HorizontalAlignment="Left" Height="446" VerticalAlignment="Top" Width="432" Margin="-4,0,-6,0" Source="FondoMolle2_bg juego copy.jpg"/>
+
+        </Grid>
     </Grid>
 </Window>
