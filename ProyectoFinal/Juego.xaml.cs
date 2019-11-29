@@ -151,9 +151,24 @@ namespace ProyectoFinal
         private void Timer_Tick(object sender, EventArgs e)
         {
 
+            //Boundaries//
+            if (pepper.PosicionY < 80)
+            {
+                pepper.CambiarDireccion(Pepper.Direccion.Estatico);
+            }
+            else if (pepper.PosicionY > 278)
+            {
+                pepper.CambiarDireccion(Pepper.Direccion.Estatico);
+            }
 
-          
-
+            if (pepper.PosicionX < -11)
+            {
+                pepper.CambiarDireccion(Pepper.Direccion.Estatico);
+            }
+            else if (pepper.PosicionX > 412)
+            {
+                pepper.CambiarDireccion(Pepper.Direccion.Estatico);
+            }
 
             if (frecuenciaFundamental >= 200 && frecuenciaFundamental <=500)
             {
@@ -166,7 +181,7 @@ namespace ProyectoFinal
             }
             if (frecuenciaFundamental>=701 && frecuenciaFundamental <=900)
             {
-                pepper.CambiarDireccion(Pepper.Direccion.Arriba);
+                pepper.CambiarDireccion(Pepper.Direccion.Arriba);   
             }
             if (frecuenciaFundamental>=901)
             {
