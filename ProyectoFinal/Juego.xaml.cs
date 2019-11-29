@@ -141,10 +141,20 @@ namespace ProyectoFinal
         private void Timer_Tick(object sender, EventArgs e)
         {
 
+            if (pepper.PosicionY < 80)
+            {
+                pepper.CambiarDireccion(Pepper.Direccion.Estatico);
+            }
+            else if (pepper.PosicionY > 278)
+            {
+                pepper.CambiarDireccion(Pepper.Direccion.Estatico);
+            }
 
-          
-
-            if (pepper.PosicionY <= 80)
+            if (pepper.PosicionX < -11)
+            {
+                pepper.CambiarDireccion(Pepper.Direccion.Estatico);
+            }
+            else if (pepper.PosicionX > 412)
             {
                 pepper.CambiarDireccion(Pepper.Direccion.Estatico);
             }

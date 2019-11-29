@@ -23,7 +23,7 @@ namespace ProyectoFinal
         List<BitmapImage> derecha = new List<BitmapImage>();
 
         Image Imagen { get; set; }
-        public enum Direccion { Izquierda, Derecha, Arriba, Abajo, Estatico};
+        public enum Direccion { Izquierda, Derecha, Arriba, Abajo, Estatico };
         Direccion DireccionActual { get; set; }
 
         public double PosicionX { get; set; }
