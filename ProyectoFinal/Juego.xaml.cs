@@ -102,7 +102,7 @@ namespace ProyectoFinal
         {
 
 
-            if (e.Key == Key.Left)
+            if (e.Key == Key.Left )
             {
                 pepper.CambiarDireccion(Pepper.Direccion.Izquierda);
             }
@@ -136,6 +136,24 @@ namespace ProyectoFinal
                 Canvas.SetTop(fish, 10);
             }
 
+
+            if (frecuenciaFundamental >= 200 && frecuenciaFundamental <=500)
+            {
+                pepper.CambiarDireccion(Pepper.Direccion.Izquierda);
+            }
+            if (frecuenciaFundamental>=501 && frecuenciaFundamental<=700)
+            {
+                pepper.CambiarDireccion(Pepper.Direccion.Derecha);
+
+            }
+            if (frecuenciaFundamental>=701 && frecuenciaFundamental <=900)
+            {
+                pepper.CambiarDireccion(Pepper.Direccion.Arriba);
+            }
+            if (frecuenciaFundamental>=901)
+            {
+                pepper.CambiarDireccion(Pepper.Direccion.Abajo);
+            }
         }
 
         private void btnIniciar_Click(object sender, RoutedEventArgs e)
