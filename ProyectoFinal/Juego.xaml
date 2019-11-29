@@ -38,5 +38,8 @@
         <Canvas x:Name="gameover" Visibility="Collapsed">
             <Image Source="image1.png" Height="586" Width="795" Canvas.Left="-175" Canvas.Top="-75"></Image>
         </Canvas>
+        <Canvas x:Name="youwin" Visibility="Collapsed">
+            <Image Source="1.jpg" Height="586" Width="795" Canvas.Left="-175" Canvas.Top="-75"></Image>
+        </Canvas>
     </Canvas>
 </UserControl>

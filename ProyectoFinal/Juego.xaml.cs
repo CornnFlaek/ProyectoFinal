@@ -106,6 +106,16 @@ namespace ProyectoFinal
                 }
             }
 
+            double xPepperi = Canvas.GetLeft(spritePepper);
+            double yPepperi = Canvas.GetTop(spritePepper);
+            double xFish = Canvas.GetLeft(fish);
+            double yFish = Canvas.GetTop(fish);
+            if (xFish + fish.Width >= xPepperi && xFish <= xPepperi + spritePepper.Width && yFish + fish.Height >= yPepperi && yFish <= yPepperi + spritePepper.Height)
+            {
+                jugando = false;
+                youwin.Visibility = Visibility.Visible;
+            }
+
             tiempoAnterior = tiempoActual;
         }
 
