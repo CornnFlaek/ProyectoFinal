@@ -126,14 +126,25 @@ namespace ProyectoFinal
         {
 
 
-            if (frecuenciaFundamental >= 500)
+            if (frecuenciaFundamental >= 100 && frecuenciaFundamental<=600)
             {
                 var upFish = Canvas.GetTop(fish);
-                Canvas.SetTop(fish, upFish + (frecuenciaFundamental / 500.0f) * 0.5f);
+                Canvas.SetTop(fish, upFish - 10);
             }
-            else
+            if(frecuenciaFundamental >= 600 && frecuenciaFundamental <= 700)
             {
-                Canvas.SetTop(fish, 10);
+                var leftFish = Canvas.GetLeft(fish);
+                Canvas.SetLeft(fish, leftFish + 10);
+            }
+            if (frecuenciaFundamental >= 600 && frecuenciaFundamental <= 700)
+            {
+                var rightFish = Canvas.GetTop(fish);
+                Canvas.SetRight(fish, rightFish + 10);
+            }
+            if (frecuenciaFundamental >= 700 && frecuenciaFundamental <= 800)
+            {
+                var downFish = Canvas.GetTop(fish);
+                Canvas.SetRight(fish, downFish - 10);
             }
 
 
