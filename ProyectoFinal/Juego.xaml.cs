@@ -49,7 +49,7 @@ namespace ProyectoFinal
 
             ThreadStart threadStart = new ThreadStart(cicloPrincipal);
             Thread thread = new Thread(threadStart);
-            thread.Start();
+            thre ad.Start();
 
 
         }
