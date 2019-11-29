@@ -31,13 +31,16 @@ namespace ProyectoFinal
     {
         WaveIn waveIn; //Conexion con microfono
         WaveFormat formato; //Formato de audio
+        DispatcherTimer timer;
+        Stopwatch cronometro;
+
         public bool jugando = true;
         Pepper pepper;
         Stopwatch stopwatch = new Stopwatch();
         TimeSpan tiempoAnterior;
         float frecuenciaFundamental = 0;
-        DispatcherTimer timer;
-        Stopwatch cronometro;
+    
+
         public Juego()
         {
             InitializeComponent();
@@ -62,7 +65,7 @@ namespace ProyectoFinal
 
             ThreadStart threadStart = new ThreadStart(cicloPrincipal);
             Thread thread = new Thread(threadStart);
-            thre ad.Start();
+            thread.Start();
 
 
         }
@@ -95,35 +98,50 @@ namespace ProyectoFinal
             jugando = false;
         }
 
-        private void canvasPrincipal_KeyDown(object sender, EventArgs e)
+        private void canvasPrincipal_KeyDown(object sender, KeyEventArgs e)
         {
 
 
-            if (frecuenciaFundamental <=500)
+            if (e.Key == Key.Left)
             {
                 pepper.CambiarDireccion(Pepper.Direccion.Izquierda);
             }
-            if (frecuenciaFundamental >=600)
+            if (e.Key == Key.Right)
             {
                 pepper.CambiarDireccion(Pepper.Direccion.Derecha);
 
             }
-            if (frecuenciaFundamental>=700)
+            if (e.Key == Key.Up)
             {
                 pepper.CambiarDireccion(Pepper.Direccion.Arriba);
             }
-            if (frecuenciaFundamental>=200)
+            if (e.Key == Key.Down)
             {
                 pepper.CambiarDireccion(Pepper.Direccion.Abajo);
             }
 
         }
 
-    
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+
+
+            if (frecuenciaFundamental >= 500)
+            {
+                var upFish = Canvas.GetTop(fish);
+                Canvas.SetTop(fish, upFish + (frecuenciaFundamental / 500.0f) * 0.5f);
+            }
+            else
+            {
+                Canvas.SetTop(fish, 10);
+            }
+
+        }
 
         private void btnIniciar_Click(object sender, RoutedEventArgs e)
         {
             jugando = true;
+            timer.Start();
             //Inicializar la conexion
             waveIn = new WaveIn();
 
@@ -133,7 +151,7 @@ namespace ProyectoFinal
             formato = waveIn.WaveFormat;
 
             //Duracion del buffer
-            waveIn.BufferMilliseconds = 500;
+            waveIn.BufferMilliseconds = 250;
 
             //Con que funcion respondemos
             //cuando se llena el buffer
@@ -146,72 +164,67 @@ namespace ProyectoFinal
         {
             byte[] buffer = e.Buffer;
             int bytesGrabados = e.BytesRecorded;
+            float acumulador = 0.0f;
 
-            int numMuestras = bytesGrabados / 2;
+            double numeroMuestras = bytesGrabados / 2;
 
-            int exponente = 0;
-            int numeroBits = 0;
+            int exponente = 1;
+            int numeroMuestrasComplejas = 0;
+            int bitsMaximos = 0;
 
             do
             {
+                bitsMaximos = (int)Math.Pow(2, exponente);
                 exponente++;
-                numeroBits = (int)
-                    Math.Pow(2, exponente);
-            } while (numeroBits < numMuestras);
-            exponente -= 1;
-            numeroBits = (int)
-                Math.Pow(2, exponente);
-            Complex[] muestrasComplejas =
-                new Complex[numeroBits];
+
+            } while (bitsMaximos < numeroMuestras);
+
+            numeroMuestrasComplejas = bitsMaximos / 2;
+            exponente -= 2;
+
+            Complex[] señalCompleja = new Complex[numeroMuestrasComplejas];
 
             for (int i = 0; i < bytesGrabados; i += 2)
             {
-                short muestra =
-                    (short)(buffer[i + 1] << 8 | buffer[i]);
-                float muestra32bits =
-                    (float)muestra / 32768.0f;
-                if (i / 2 < numeroBits)
+
+
+                short muestra = (short)(buffer[i + 1] << 8 | buffer[i]);
+                float muestra32bits = (float)muestra / 32768.0f;
+                acumulador += Math.Abs(muestra32bits);
+
+                if (i / 2 < numeroMuestrasComplejas)
                 {
-                    muestrasComplejas[i / 2].X = muestra32bits;
+                    señalCompleja[i / 2].X = muestra32bits;
                 }
 
             }
+            float promedio = acumulador / (bytesGrabados / 2.0f);
 
-            FastFourierTransform.FFT(true,
-                exponente, muestrasComplejas);
-
-            float[] valoresAbsolutos =
-                new float[muestrasComplejas.Length];
-
-            for (int i = 0; i < muestrasComplejas.Length;
-                i++)
+            if (promedio > 0)
             {
-                valoresAbsolutos[i] = (float)
-                    Math.Sqrt(
-                    (muestrasComplejas[i].X * muestrasComplejas[i].X) +
-                    (muestrasComplejas[i].Y * muestrasComplejas[i].Y));
 
-            }
+                FastFourierTransform.FFT(true, exponente, señalCompleja);
+                float[] valoresAbsolutos = new float[señalCompleja.Length];
+                for (int i = 0; i < señalCompleja.Length; i++)
+                {
 
-            var mitadValoresAbsolutos =
-                valoresAbsolutos.Take(valoresAbsolutos.Length / 2).ToList();
+                    valoresAbsolutos[i] = (float)Math.Sqrt(
+                        (señalCompleja[i].X * señalCompleja[i].X) +
+                        (señalCompleja[i].Y * señalCompleja[i].Y)
+                        );
 
-            int indiceValorMaximo =
-                mitadValoresAbsolutos.IndexOf(
-                mitadValoresAbsolutos.Max());
+                }
+                int indiceSeñalConMasPresencia = valoresAbsolutos.ToList().IndexOf(valoresAbsolutos.Max());
 
-            frecuenciaFundamental =
-               (float)(indiceValorMaximo * formato.SampleRate)
-               / (float)valoresAbsolutos.Length;
+                frecuenciaFundamental = (float)(indiceSeñalConMasPresencia * waveIn.WaveFormat.SampleRate) / (float)valoresAbsolutos.Length;
 
-            lblHertz.Text =
+                lblHertz.Text =
                 frecuenciaFundamental.ToString("n") +
                 " Hz";
 
-
-
-
         }
+        }
+
         private void btnDetener_Click(object sender, RoutedEventArgs e)
         {
             jugando = false;

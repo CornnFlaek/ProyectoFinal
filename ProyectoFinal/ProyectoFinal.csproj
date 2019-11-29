@@ -153,5 +153,8 @@
   <ItemGroup>
     <Resource Include="FondoJuego_Fondo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="fish.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
