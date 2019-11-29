@@ -12,12 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using System.Threading;
 using System.Diagnostics;
 
 using NAudio;
 using NAudio.Wave;
 using NAudio.Dsp;
+using NAudio.Wave.SampleProviders;
 
 
 namespace ProyectoFinal
@@ -33,6 +35,9 @@ namespace ProyectoFinal
         Pepper pepper;
         Stopwatch stopwatch = new Stopwatch();
         TimeSpan tiempoAnterior;
+        float frecuenciaFundamental = 0;
+        DispatcherTimer timer;
+        Stopwatch cronometro;
         public Juego()
         {
             InitializeComponent();
@@ -40,6 +45,14 @@ namespace ProyectoFinal
             canvasPrincipal.Focus();
 
 
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(100);
+            timer.Tick += Timer_Tick;
+
+
+            cronometro = new Stopwatch();
+
+           
 
             pepper = new Pepper(spritePepper);
 
@@ -53,11 +66,13 @@ namespace ProyectoFinal
 
 
         }
-        
-      
+
+
+
+
         public void cicloPrincipal()
         {
-          
+
             while (jugando)
             {
                 Dispatcher.Invoke(actualizar);
@@ -70,7 +85,7 @@ namespace ProyectoFinal
             double deltaTime = tiempoActual.TotalSeconds - tiempoAnterior.TotalSeconds;
 
             pepper.Mover(deltaTime);
-          
+
 
             tiempoAnterior = tiempoActual;
         }
@@ -80,29 +95,31 @@ namespace ProyectoFinal
             jugando = false;
         }
 
-        private void canvasPrincipal_KeyDown(object sender, KeyEventArgs e)
+        private void canvasPrincipal_KeyDown(object sender, EventArgs e)
         {
-            
-          
-                if (e.Key == Key.Left)
-                {
-                    pepper.CambiarDireccion(Pepper.Direccion.Izquierda);
-                }
-                if (e.Key == Key.Right)
-                {
-                    pepper.CambiarDireccion(Pepper.Direccion.Derecha);
-                    
-                }
-                if (e.Key == Key.Up)
-                {
-                    pepper.CambiarDireccion(Pepper.Direccion.Arriba);
-                }
-                if (e.Key == Key.Down)
-                {
-                    pepper.CambiarDireccion(Pepper.Direccion.Abajo);
-                }
-            
+
+
+            if (frecuenciaFundamental <=500)
+            {
+                pepper.CambiarDireccion(Pepper.Direccion.Izquierda);
+            }
+            if (frecuenciaFundamental >=600)
+            {
+                pepper.CambiarDireccion(Pepper.Direccion.Derecha);
+
+            }
+            if (frecuenciaFundamental>=700)
+            {
+                pepper.CambiarDireccion(Pepper.Direccion.Arriba);
+            }
+            if (frecuenciaFundamental>=200)
+            {
+                pepper.CambiarDireccion(Pepper.Direccion.Abajo);
+            }
+
         }
+
+    
 
         private void btnIniciar_Click(object sender, RoutedEventArgs e)
         {
@@ -183,7 +200,7 @@ namespace ProyectoFinal
                 mitadValoresAbsolutos.IndexOf(
                 mitadValoresAbsolutos.Max());
 
-            float frecuenciaFundamental =
+            frecuenciaFundamental =
                (float)(indiceValorMaximo * formato.SampleRate)
                / (float)valoresAbsolutos.Length;
 
