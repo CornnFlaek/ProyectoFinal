@@ -145,7 +145,7 @@ namespace ProyectoFinal
             {
                 pepper.CambiarDireccion(Pepper.Direccion.Estatico);
             }
-            else if (pepper.PosicionY > 278
+            else if (pepper.PosicionY > 278)
             {
                 pepper.CambiarDireccion(Pepper.Direccion.Estatico);
             }
