@@ -141,6 +141,7 @@ namespace ProyectoFinal
         private void Timer_Tick(object sender, EventArgs e)
         {
 
+            //Boundaries//
             if (pepper.PosicionY < 80)
             {
                 pepper.CambiarDireccion(Pepper.Direccion.Estatico);
