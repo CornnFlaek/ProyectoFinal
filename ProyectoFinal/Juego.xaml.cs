@@ -23,7 +23,7 @@ namespace ProyectoFinal
     /// </summary>
     public partial class Juego : UserControl
     {
-        bool jugando = true;
+        public bool jugando;
         Pepper pepper;
         Stopwatch stopwatch = new Stopwatch();
         TimeSpan tiempoAnterior;
@@ -32,6 +32,8 @@ namespace ProyectoFinal
             InitializeComponent();
 
             canvasPrincipal.Focus();
+
+
 
             pepper = new Pepper(spritePepper);
 
@@ -45,13 +47,17 @@ namespace ProyectoFinal
 
 
         }
+        
+      
         public void cicloPrincipal()
         {
+          
             while (jugando)
             {
                 Dispatcher.Invoke(actualizar);
             }
         }
+
         public void actualizar()
         {
             TimeSpan tiempoActual = stopwatch.Elapsed;
@@ -70,6 +76,8 @@ namespace ProyectoFinal
 
         private void canvasPrincipal_KeyDown(object sender, KeyEventArgs e)
         {
+            
+
             if (!e.IsRepeat)
             {
                 if (e.Key == Key.Left)
@@ -79,6 +87,7 @@ namespace ProyectoFinal
                 if (e.Key == Key.Right)
                 {
                     pepper.CambiarDireccion(Pepper.Direccion.Derecha);
+                    
                 }
                 if (e.Key == Key.Up)
                 {

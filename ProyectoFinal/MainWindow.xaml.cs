@@ -23,10 +23,11 @@ namespace ProyectoFinal
     public partial class MainWindow : Window
     {
 
-      
+
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
             Juego.Visibility = Visibility.Visible;
+            Juego.jugando = true;
         }
 
         private void btnTutorial_Click(object sender, RoutedEventArgs e)

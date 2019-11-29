@@ -9,6 +9,6 @@
     <Canvas Focusable="True" Name="canvasPrincipal" KeyDown="canvasPrincipal_KeyDown" Background="Black">
         <Image x:Name="start_gif" Source="FondoJuego_Fondo.png" Stretch="Fill" Grid.RowSpan="2" Height="487" Canvas.Top="-37" Width="450"/>
         <Image Name="spritePepper" Width="50" Height="50" Canvas.Left="132" Canvas.Top="177" Stretch="Fill" ></Image>
-
+        
     </Canvas>
 </UserControl>
