@@ -147,6 +147,10 @@ namespace ProyectoFinal
                 Canvas.SetRight(fish, downFish - 10);
             }
 
+            if (pepper.PosicionY <= 80)
+            {
+                pepper.CambiarDireccion(Pepper.Direccion.Estatico);
+            }
 
             if (frecuenciaFundamental >= 200 && frecuenciaFundamental <=500)
             {
@@ -159,7 +163,7 @@ namespace ProyectoFinal
             }
             if (frecuenciaFundamental>=701 && frecuenciaFundamental <=900)
             {
-                pepper.CambiarDireccion(Pepper.Direccion.Arriba);
+                pepper.CambiarDireccion(Pepper.Direccion.Arriba);   
             }
             if (frecuenciaFundamental>=901)
             {

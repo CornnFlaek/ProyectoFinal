@@ -23,11 +23,11 @@ namespace ProyectoFinal
         List<BitmapImage> derecha = new List<BitmapImage>();
 
         Image Imagen { get; set; }
-        public enum Direccion { Izquierda, Derecha, Arriba, Abajo };
+        public enum Direccion { Izquierda, Derecha, Arriba, Abajo, Estatico};
         Direccion DireccionActual { get; set; }
 
-        double PosicionX { get; set; }
-        double PosicionY { get; set; }
+        public double PosicionX { get; set; }
+        public double PosicionY { get; set; }
         public double Velocidad { get; set; }
 
         int spriteActual = 0;
