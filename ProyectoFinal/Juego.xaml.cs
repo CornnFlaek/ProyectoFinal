@@ -36,6 +36,7 @@ namespace ProyectoFinal
 
         public bool jugando = true;
         Pepper pepper;
+        List<Balita> balitas = new List<Balita>();
         Stopwatch stopwatch = new Stopwatch();
         TimeSpan tiempoAnterior;
         float frecuenciaFundamental = 0;
@@ -58,6 +59,8 @@ namespace ProyectoFinal
            
 
             pepper = new Pepper(spritePepper);
+            balitas.Add(new Balita(balito));
+            balitas.Add(new Balita(balite));
 
             stopwatch.Start();
             tiempoAnterior = stopwatch.Elapsed;
@@ -88,7 +91,20 @@ namespace ProyectoFinal
             double deltaTime = tiempoActual.TotalSeconds - tiempoAnterior.TotalSeconds;
 
             pepper.Mover(deltaTime);
+            foreach (Balita balita in balitas)
+            {
+                balita.Mover(deltaTime);
+                double xPepper = Canvas.GetLeft(spritePepper);
+                double xBalitas = Canvas.GetLeft(balita.Imagen);
+                double yPepper = Canvas.GetTop(spritePepper);
+                double yBalitas = Canvas.GetTop(balita.Imagen);
 
+                if (xBalitas + balita.Imagen.Width >= xPepper && xBalitas <= xPepper + spritePepper.Width && yBalitas + balita.Imagen.Height >= yPepper && yBalitas <= yPepper + spritePepper.Height)
+                {
+                    jugando = false;
+                    gameover.Visibility = Visibility.Visible;
+                }
+            }
 
             tiempoAnterior = tiempoActual;
         }
@@ -126,26 +142,7 @@ namespace ProyectoFinal
         {
 
 
-            if (frecuenciaFundamental >= 100 && frecuenciaFundamental<=600)
-            {
-                var upFish = Canvas.GetTop(fish);
-                Canvas.SetTop(fish, upFish - 10);
-            }
-            if(frecuenciaFundamental >= 600 && frecuenciaFundamental <= 700)
-            {
-                var leftFish = Canvas.GetLeft(fish);
-                Canvas.SetLeft(fish, leftFish + 10);
-            }
-            if (frecuenciaFundamental >= 600 && frecuenciaFundamental <= 700)
-            {
-                var rightFish = Canvas.GetTop(fish);
-                Canvas.SetRight(fish, rightFish + 10);
-            }
-            if (frecuenciaFundamental >= 700 && frecuenciaFundamental <= 800)
-            {
-                var downFish = Canvas.GetTop(fish);
-                Canvas.SetRight(fish, downFish - 10);
-            }
+          
 
             if (pepper.PosicionY <= 80)
             {
@@ -191,6 +188,7 @@ namespace ProyectoFinal
             waveIn.DataAvailable += WaveIn_DataAvailable;
 
             waveIn.StartRecording();
+
         }
         private void WaveIn_DataAvailable(object sender,
             WaveInEventArgs e)
