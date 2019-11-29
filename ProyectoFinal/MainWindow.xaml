@@ -16,8 +16,8 @@
         <local:Tutorial x:Name="Tutorial" Visibility="Collapsed">
         </local:Tutorial>
         <Grid x:Name="panelTutorial" HorizontalAlignment="Left" Height="446" Margin="10,-27,0,0" VerticalAlignment="Top" Width="422" Visibility="Hidden">
-            <Image x:Name="imgFondo" HorizontalAlignment="Left" Height="446" VerticalAlignment="Top" Width="432" Margin="-4,0,-6,0" Source="FondoMolle2_bg juego copy.jpg"/>
-            <Button x:Name="btnAtras" Content="Atrás" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Margin="29,374,0,0" Height="49" Background="Red" BorderBrush="{x:Null}" FontFamily="Chiller" FontSize="36" Click="btnAtras_Click"/>
+            <Image x:Name="imgFondo" HorizontalAlignment="Left" Height="521" VerticalAlignment="Top" Width="528" Margin="-46,0,-60,-75" Source="Tuto.jpg"/>
+            <Button x:Name="btnAtras" Content="Atrás" HorizontalAlignment="Left" VerticalAlignment="Top" Width="106" Margin="234,356,0,0" Height="49" Background="DodgerBlue" BorderBrush="{x:Null}" FontFamily="Chiller" FontSize="36" Click="btnAtras_Click"/>
 
         </Grid>
     </Grid>
