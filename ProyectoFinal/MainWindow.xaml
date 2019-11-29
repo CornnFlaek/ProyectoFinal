@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="450">
     <Grid>
         <Image x:Name="start_gif" Margin="0,-37,0,0" Source="start.gif" Stretch="Fill"/>
-        <Button x:Name="btnTutorial" Content="Tutorial" HorizontalAlignment="Left" VerticalAlignment="Top" Width="165" Margin="42,337,0,0" Height="49" Background="Red" FontFamily="Chiller" FontSize="36" BorderBrush="{x:Null}" Click="btnTutorial_Click"/>
+        <Button x:Name="btnTutorial" Content="Tutorial" HorizontalAlignment="Left" VerticalAlignment="Top" Width="165" Margin="40,337,0,0" Height="49" Background="Red" FontFamily="Chiller" FontSize="36" BorderBrush="{x:Null}" Click="btnTutorial_Click"/>
         <Button x:Name="btnStart" Content="Start" HorizontalAlignment="Left" VerticalAlignment="Top" Width="104" Margin="292,335,0,0" Height="49" Background="Red" BorderBrush="{x:Null}" FontFamily="Chiller" FontSize="36" Click="btnStart_Click"/>
 
         <local:Juego x:Name="Juego" Visibility="Collapsed">
