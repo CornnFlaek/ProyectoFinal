@@ -9,7 +9,7 @@
     <Canvas>
         <Canvas Focusable="True" Name="canvasPrincipal" KeyDown="canvasPrincipal_KeyDown" Background="Black">
             <Image x:Name="start_gif" Source="FondoJuego_Fondo.png" Stretch="Fill" Grid.RowSpan="2" Height="487" Canvas.Top="-37" Width="450"/>
-            <Image x:Name="fish" Source="fish.png" Stretch="Fill" Grid.RowSpan="2" Height="41" Canvas.Top="145" Width="40" Canvas.Left="75"/>
+            <Image x:Name="fish" Source="fish.png" Stretch="Fill" Grid.RowSpan="2" Height="41" Canvas.Top="145" Width="25" Canvas.Left="75"/>
             <Image Name="spritePepper" Width="50" Height="50" Canvas.Left="132" Canvas.Top="177" Stretch="Fill" ></Image>
             <Button x:Name="btnIniciar" Content="Iniciar" Width="75" Canvas.Left="25" Canvas.Top="10" Click="btnIniciar_Click"/>
             <Button x:Name="btnDetener" Content="Detener" Canvas.Left="120" Canvas.Top="10" Width="75" Click="btnDetener_Click"/>
